@@ -1,0 +1,9 @@
+CREATE TABLE Barang (
+    IDBarang INT PRIMARY KEY,
+    NamaBarang VARCHAR(50),
+    Harga DECIMAL(10, 2)
+);
+
+INSERT INTO Barang (IDBarang, NamaBarang, Harga) VALUES
+(1, 'Laptop', 1200.00),
+(2, 'Smartphone', 500.00);
