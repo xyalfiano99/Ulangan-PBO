@@ -1,0 +1,21 @@
+
+CREATE TABLE Orang (
+    IDOrang INT PRIMARY KEY,
+    NamaDepan VARCHAR(50),
+    NamaBelakang VARCHAR(50)
+);
+
+CREATE TABLE Karyawan (
+    IDKaryawan INT PRIMARY KEY,
+    IDOrang INT,
+    Jabatan VARCHAR(50),
+    FOREIGN KEY (IDOrang) REFERENCES Orang(IDOrang)
+);
+
+INSERT INTO Orang (IDOrang, NamaDepan, NamaBelakang) VALUES
+(1, 'John', 'Cena'),
+(2, 'Ali', 'Smith');
+
+INSERT INTO Karyawan (IDKaryawan, IDOrang, Jabatan) VALUES
+(101, 1, 'Manajer'),
+(102, 2, 'Pengembang');
