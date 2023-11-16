@@ -1,11 +1,11 @@
 BEGIN
     BEGIN TRY
-        -- Kode SQL Anda di sini
+      
         INSERT INTO mahasiswa (nama, nim) VALUES ('John Doe', '12345');
         PRINT 'Mahasiswa berhasil ditambahkan';
     END TRY
     BEGIN CATCH
-        -- Menangani kesalahan di sini
+        
         PRINT 'Terjadi kesalahan: ' + ERROR_MESSAGE();
     END CATCH
 END;
