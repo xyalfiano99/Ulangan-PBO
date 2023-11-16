@@ -5,22 +5,22 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.db'  # Ubah URL sesuai kebutuhan
 db = SQLAlchemy(app)
 
-# Definisikan model Person
+
 class Person(db.Model):
     person_id = db.Column(db.Integer, primary_key=True)
     nama_depan = db.Column(db.String(50), nullable=False)
     nama_belakang = db.Column(db.String(50), nullable=False)
 
-# Definisikan model Employee
+
 class Employee(db.Model):
     employee_id = db.Column(db.Integer, primary_key=True)
     jabatan = db.Column(db.String(50), nullable=False)
     person_id = db.Column(db.Integer, db.ForeignKey('person.person_id'), nullable=False)
 
-# Buat tabel jika belum ada
+
 db.create_all()
 
-# Route untuk menambahkan data
+
 @app.route('/tambah_data', methods=['POST'])
 def tambah_data():
     data = request.get_json()
@@ -35,7 +35,7 @@ def tambah_data():
 
     return jsonify({'message': 'Data berhasil ditambahkan!'})
 
-# Route untuk mendapatkan data
+
 @app.route('/ambil_data', methods=['GET'])
 def ambil_data():
     employees = Employee.query.join(Person).all()
@@ -51,7 +51,7 @@ def ambil_data():
 
     return jsonify({'data': data_list})
 
-# Route untuk menghapus data
+
 @app.route('/hapus_data/<int:person_id>', methods=['DELETE'])
 def hapus_data(person_id):
     person = Person.query.get(person_id)
