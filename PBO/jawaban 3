@@ -1,0 +1,30 @@
+-- Tabel Barang
+CREATE TABLE Barang (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    tipe VARCHAR(10),
+    harga INT
+);
+
+-- Tabel Buku
+CREATE TABLE Buku (
+    id INT PRIMARY KEY,
+    penulis VARCHAR(50),
+    FOREIGN KEY (id) REFERENCES Barang(id)
+);
+
+-- Tabel Pakaian
+CREATE TABLE Pakaian (
+    id INT PRIMARY KEY,
+    ukuran VARCHAR(10),
+    FOREIGN KEY (id) REFERENCES Barang(id)
+);
+
+-- Tampilan untuk Polimorfisme
+CREATE VIEW Produk AS
+SELECT id, nama, tipe, harga, penulis AS atribut_tambahan FROM Barang WHERE tipe = 'Buku'
+UNION
+SELECT id, nama, tipe, harga, ukuran AS atribut_tambahan FROM Barang WHERE tipe = 'Pakaian';
+
+-- Menggunakan tampilan
+SELECT * FROM Produk;
